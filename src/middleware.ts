@@ -7,9 +7,11 @@ export default function middleware(request: NextRequest) {
 
   const locale = searchValue || cookieValue || defaultLocale;
 
-  const response = NextResponse.rewrite(
-    new URL(`/${locale}${request.nextUrl.pathname}`, request.url)
-  );
+  const response = searchValue
+    ? NextResponse.redirect(new URL('/', request.url))
+    : NextResponse.rewrite(
+        new URL(`/${locale}${request.nextUrl.pathname}`, request.url)
+      );
 
   if (cookieValue !== locale) {
     response.cookies.set('locale', locale);
