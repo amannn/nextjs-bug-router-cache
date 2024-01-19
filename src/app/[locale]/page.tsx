@@ -10,7 +10,7 @@ export default function Index({params: {locale}}: {params: {locale: string}}) {
         <Link href="/a">Go to /a</Link>
       </p>
       <p>
-        <Link href={`/?locale=${otherLocale}`}>
+        <Link prefetch={false} href={`/?locale=${otherLocale}`}>
           Change locale to "{otherLocale}"
         </Link>
       </p>
